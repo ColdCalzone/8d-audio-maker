@@ -94,7 +94,7 @@ fn main() {
             panic!("Error: Expected bitdepth of 32 float.");
         }
     } else {
-        println!("USAGE:\n--hrir [path]\n    load the hrir sphere from the path\n--audio [path]\n    load the audio from a WAV file (must be *mono*)\n--speed [number]\n    Default: 10\n    The rate at which the audio rotates (higher = slower)\n--strength [number]\n    The strnength of the 8D effect (might not work...)\n--output [path]\n    The file to put your output in");
+        println!("USAGE:\n--hrir [path]\n    load the hrir sphere from the path\n--audio [path]\n    load the audio from a WAV file (must be *mono*)\n--speed [number]\n    Default: 10\n    The rate at which the audio rotates (higher = slower)\n--strength [number]\n    The strength of the 8D effect (might not work...)\n--output [path]\n    The file to put your output in");
         std::process::exit(0);
     };
 
