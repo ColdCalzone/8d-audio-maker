@@ -42,6 +42,32 @@
     padding-top: 1%;
   }
 </style>
+<script>
+  let hrir_spheres = [
+    "./hrir spheres/IRC_1002_C.bin",
+    "./hrir spheres/IRC_1003_C.bin",
+    "./hrir spheres/IRC_1004_C.bin",
+    "./hrir spheres/IRC_1005_C.bin",
+    "./hrir spheres/IRC_1006_C.bin",
+    "./hrir spheres/IRC_1007_C.bin",
+    "./hrir spheres/IRC_1008_C.bin",
+    "./hrir spheres/IRC_1009_C.bin",
+    "./hrir spheres/IRC_10012_C.bin",
+    "./hrir spheres/IRC_10013_C.bin",
+    "./hrir spheres/IRC_10014_C.bin",
+  ];
+  let select = document.getElementById("hrir-select");
+  
+  function appendOption(value, index, array) {
+    let option = document.createElement("option");
+    option.value = value;
+    option.innerHTML = value;
+    select.appendChild(option);
+  }
+  
+  hrir_spheres.forEach(appendOption); 
+</script>
+
 ## This page is designed to turn \*.wav files into 8D audio.
 All you need to do is upload a \*.wav file and select a HRIR sphere (or upload your own)\
 All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sphere_builder/tree/master/hrtf_base/IRCAM).
