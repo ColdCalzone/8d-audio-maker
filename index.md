@@ -25,8 +25,7 @@
     padding-top: 2rem;
     margin-top: 12rem;
     border-top: solid 1px #eff0f1;
-  }
-  
+  }  
 </style>
 ## This page is designed to turn \*.wav files into 8D audio.
 All you need to do is upload a \*.wav file and select a HRIR sphere (or upload your own)\
@@ -45,5 +44,7 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
   </div>
 </div>
 <div class="center big">
-  <button id="parse" onclick="parseAudio()">8D-ify</button>
+  <div class="center">
+    <button id="parse" onclick="parseAudio()">8D-ify</button>
+  </div>
 </div>
