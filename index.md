@@ -12,8 +12,12 @@
     margin-right: 10%;
     float: left;
   }
-  .small p, input, select {
+  .small p, input, select, hr {
     margin-bottom: -5px;
+  }
+  #parse {
+    position: relative;
+    bottom: 500px;
   }
 </style>
 ## This page is designed to turn \*.wav files into 8D audio.
@@ -32,4 +36,4 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
     <select name="hrir-select" id="hrir-select"></select>
   </div>
 </div>
-<button onclick="parseAudio()">8D-ify</button>
+<button id="parse" onclick="parseAudio()">8D-ify</button>
