@@ -3,6 +3,7 @@
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 10%;
+    padding-bottom: 8%;
   }
   .big {
     width: 80%;
@@ -15,10 +16,9 @@
     float: left;
   }
   .small-vertical {
-    width: 40%;
-    display: inline-block;
+    width: 100%;
     border: 2px dashed #9CA091;
-    margin-top: 2%;
+    margin-top: 3%;
     float: left;
   }
   p, h1, h2{
@@ -53,7 +53,7 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
     </div>
     <div class="small-vertical">
       Rotation rate
-      <input type="number" id="rate" min="1">
+      <input type="number" id="rate" min="1" value="1">
     </div>
   </div>
   <div class="small">
