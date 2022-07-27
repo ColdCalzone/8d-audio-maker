@@ -94,13 +94,11 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
     let rate = document.getElementById("rate").value;
     let sphere = document.getElementById("hrir-file-upload").files[0];
     let audio = document.getElementById("audio-file").files[0];
-    if sphere == undefined {
+    if(sphere == undefined) {
       sphere = select.value;
     }
     console.log(sphere);
   }
-</script>
 
-  }
   hrir_spheres.forEach(appendOption); 
 </script>
