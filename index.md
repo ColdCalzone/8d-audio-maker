@@ -1,6 +1,8 @@
 <style>
   .center {
-    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10%;
   }
   .big {
     width: 80%;
