@@ -6,7 +6,14 @@
     width: 80%;
   }
   .small {
-    width: 30%;
+    width: 40%;
+    display: inline-block;
+    border: 2px dashed #9CA091;
+    margin-right: 10%;
+    float: left;
+  }
+  .small p, input, select {
+    margin-bottom: -5px;
   }
 </style>
 ## This page is designed to turn \*.wav files into 8D audio.
@@ -14,10 +21,13 @@ All you need to do is upload a \*.wav file and select a HRIR sphere (or upload y
 All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sphere_builder/tree/master/hrtf_base/IRCAM).
 <div id="big">
   <div class="small">
+    Upload Audio
     <input type="file" id="audio-file">
   </div>
   <div class="small">
+    Selet Sphere
     <input type="file" id="hrir-file-upload">
+    <hr>
     <label for="hrir-select">Choose a pre-selected HRIR sphere</label>
     <select name="hrir-select" id="hrir-select"></select>
   </div>
