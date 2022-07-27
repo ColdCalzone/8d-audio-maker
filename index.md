@@ -15,7 +15,7 @@
   .small p, input, select, hr {
     margin-bottom: -5px;
   }
-  #parse {
+  #button-container {
     position: relative;
     bottom: 500px;
   }
@@ -36,4 +36,6 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
     <select name="hrir-select" id="hrir-select"></select>
   </div>
 </div>
-<button id="parse" onclick="parseAudio()">8D-ify</button>
+<p id="button-container">
+  <button id="parse" onclick="parseAudio()">8D-ify</button>
+</p>
