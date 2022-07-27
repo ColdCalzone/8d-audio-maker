@@ -14,6 +14,13 @@
     margin-right: 10%;
     float: left;
   }
+  .small-vertical {
+    width: 40%;
+    display: inline-block;
+    border: 2px dashed #9CA091;
+    margin-top: 2%;
+    float: left;
+  }
   p, h1, h2{
     text-align: center;
   }
@@ -40,8 +47,14 @@ All you need to do is upload a \*.wav file and select a HRIR sphere (or upload y
 All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sphere_builder/tree/master/hrtf_base/IRCAM).
 <div class="center big">
   <div class="small">
-    Upload Audio
-    <input type="file" id="audio-file">
+    <div class="small-vertical">
+      Upload Audio
+      <input type="file" id="audio-file">
+    </div>
+    <div class="small-vertical">
+      Rotation rate
+      <input type="number" id="rate" min="1">
+    </div>
   </div>
   <div class="small">
     Select Sphere
