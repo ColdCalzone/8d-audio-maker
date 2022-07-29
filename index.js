@@ -1,4 +1,25 @@
 import init from "./pkg/audio_maker.js";
+
+function get_download(url) {
+    var xhr = new XMLHttpRequest()
+    xhr.responseType = "blob";
+    xhr.open("GET", url , true);
+    xhr.onreadystatechange = function () {
+    if(xhr.readyState === 4 && xhr.status === 200) {
+        try {
+        window.URL.createObjectURL(xhr.response)
+        const a = document.createElement('a')
+        a.href = url;
+        a.click()
+        window.URL.revokeObjectURL(url)
+        } catch(e) {
+        console.log('download failed');
+        }
+    }
+    };
+    xhr.send();
+}
+
 const getBlob = async (audio_buffer, hrir_buffer, rate) => {
 	// Instantiate our wasm module
 	const wasm = await init("./pkg/audio_maker_bg.wasm");
@@ -7,12 +28,7 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
 	const audio = Blob(wasm.convert_data_to_audio_blob(audio_buffer, hrir_buffer, rate));
 
 	//https://stackoverflow.com/questions/33247716/javascript-file-download-with-blob
-	var downloadUrl = window.URL.createObjectURL(blob);
-	var a = document.createElement("a");
-	a.href = downloadUrl;
-	a.download = filename;
-	document.body.appendChild(a);
-	a.click();
+	get_download(window.URL.createObjectURL(blob));
 };
 
 const PREFIX = "./hrir spheres/";
@@ -52,7 +68,7 @@ async function parseAudio() {
     }
     let audio_buffer = new Uint8Array(audio.arrayBuffer());
     let hrir_buffer = new Uint8Array(sphere.arrayBuffer());
-    getBlob(audio_buffer, hrir_buffer, rate);
+    await getBlob(audio_buffer, hrir_buffer, rate);
 }
 
 window.onload = function() {
