@@ -1,0 +1,12 @@
+{
+  "name": "audio_maker",
+  "version": "0.1.0",
+  "files": [
+    "audio_maker_bg.wasm",
+    "audio_maker.js",
+    "audio_maker.d.ts"
+  ],
+  "module": "audio_maker.js",
+  "types": "audio_maker.d.ts",
+  "sideEffects": false
+}
