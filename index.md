@@ -68,4 +68,4 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
   </div>
 </div>
 
-<script type="text/javascript" src="index.js"></script>
+<script type="module" src="index.js"></script>
