@@ -38,21 +38,21 @@ function appendOption(value, index, array) {
 	select.appendChild(option);
 }
 
-function parseAudio() {
-	let rate = document.getElementById("rate").value;
-	let sphere = document.getElementById("hrir-file-upload").files[0];
-	let audio = document.getElementById("audio-file").files[0];
-	if(sphere == undefined) {
-		fetch(PREFIX + select.value)
-		.then(res => res.blob())
-	    .then(blob => sphere = blob);
-	}
-	if(audio == undefined) {
-		return;
-	}
-	let audio_buffer = new UInt8Array(audio.arrayBuffer());
-	let hrir_buffer = new UInt8Array(sphere.arrayBuffer());
-	getBlob(audio_buffer, hrir_buffer, rate);
+async function parseAudio() {
+    let rate = parseInt(document.getElementById("rate").value);
+    let sphere = document.getElementById("hrir-file-upload").files[0];
+    let audio = document.getElementById("audio-file").files[0];
+    if(sphere == undefined) {
+        await fetch(PREFIX + select.value)
+        .then(res => res.blob())
+        .then(blob => sphere = blob);
+    }
+    if(audio == undefined) {
+        return;
+    }
+    let audio_buffer = new Uint8Array(audio.arrayBuffer());
+    let hrir_buffer = new Uint8Array(sphere.arrayBuffer());
+    getBlob(audio_buffer, hrir_buffer, rate);
 }
 
 window.onload = function() {
