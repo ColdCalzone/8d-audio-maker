@@ -64,7 +64,7 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
 </div>
 <div class="center big" id="button-container-container">
   <div class="center" id="button-container">
-    <button id="parse" onclick="parseAudio()">8D-ify</button>
+    <button id="parse">8D-ify</button>
   </div>
 </div>
 

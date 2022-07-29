@@ -55,4 +55,9 @@ function parseAudio() {
 	getBlob(audio_buffer, hrir_buffer, rate);
 }
 
+window.onload = function() {
+    var btn = document.getElementById("parse");
+    btn.onclick = parseAudio;
+}
+
 hrir_spheres.forEach(appendOption); 
