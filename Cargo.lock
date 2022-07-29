@@ -3,6 +3,14 @@
 version = 3
 
 [[package]]
+name = "audio_maker"
+version = "0.1.0"
+dependencies = [
+ "hrtf",
+ "wav",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -21,11 +29,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "eight-d-audio-maker"
+name = "eight_d_audio"
 version = "0.1.0"
 dependencies = [
- "hrtf",
- "wav",
+ "audio_maker",
 ]
 
 [[package]]
