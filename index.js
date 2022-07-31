@@ -1,23 +1,14 @@
 import init from "./pkg/audio_maker.js";
 
 function get_download(url) {
-    var xhr = new XMLHttpRequest()
-    xhr.responseType = "blob";
-    xhr.open("GET", url , true);
-    xhr.onreadystatechange = function () {
-    if(xhr.readyState === 4 && xhr.status === 200) {
-        try {
-        window.URL.createObjectURL(xhr.response)
-        const a = document.createElement('a')
-        a.href = url;
-        a.click()
-        window.URL.revokeObjectURL(url)
-        } catch(e) {
-        console.log('download failed');
-        }
-    }
-    };
-    xhr.send();
+    let link = document.createElement('a');
+    link.download = 'audio.wav';
+
+    link.href = url;
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
 }
 
 const getBlob = async (audio_buffer, hrir_buffer, rate) => {
