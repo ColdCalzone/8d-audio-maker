@@ -62,6 +62,9 @@ window.onload = function() {
         let reader = new FileReader();
         let hrir_buffer = new Uint8Array(reader.readAsArrayBuffer(sphere));
         let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
+        console.log(rate);
+        console.log(hrir_buffer);
+        console.log(audio_buffer);
         await getBlob(
             audio_buffer, 
             hrir_buffer, 
