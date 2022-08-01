@@ -59,16 +59,23 @@ window.onload = function() {
         if(audio == undefined) {
             return;
         }
-        let reader = new FileReader();
-        let hrir_buffer = new Uint8Array(reader.readAsArrayBuffer(sphere));
-        let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
-        console.log(rate);
-        console.log(hrir_buffer);
-        console.log(audio_buffer);
-        await getBlob(
-            audio_buffer, 
-            hrir_buffer, 
-            rate);
+        let reader_audio = new FileReader();
+        let reader_hrir = new FileReader();
+
+        let audio_buffer;
+        let hrir_buffer;
+
+        reader_audio.readAsArrayBuffer(audio);
+        reader_hrir.readAsArrayBuffer(sphere);
+        reader_audio.onload = () => {
+            hrir_buffer = new Uint8Array(reader_audio.result);
+            if(reader_hrir.readyState == FileReader.DONE) await getBlob(audio_buffer, hrir_buffer, rate);
+            
+        }
+        reader_hrir.onload = () => {
+            audio_buffer = new Uint8Array(reader_hrir.result);
+            if(reader_audio.readyState == FileReader.DONE) await getBlob(audio_buffer, hrir_buffer, rate);
+        }
     };
 }
 
