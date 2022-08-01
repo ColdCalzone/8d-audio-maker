@@ -47,13 +47,12 @@ function addHeapObject(obj) {
     return idx;
 }
 
-let WASM_VECTOR_LEN = 0;
+let stack_pointer = 32;
 
-function passArray8ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 1);
-    getUint8Memory0().set(arg, ptr / 1);
-    WASM_VECTOR_LEN = arg.length;
-    return ptr;
+function addBorrowedObject(obj) {
+    if (stack_pointer == 1) throw new Error('out of js stack');
+    heap[--stack_pointer] = obj;
+    return stack_pointer;
 }
 /**
 * @param {Uint8Array} buffer_audio
@@ -63,19 +62,15 @@ function passArray8ToWasm0(arg, malloc) {
 */
 export function convert_data_to_audio_blob(buffer_audio, buffer_hrir, rate) {
     try {
-        var ptr0 = passArray8ToWasm0(buffer_audio, wasm.__wbindgen_malloc);
-        var len0 = WASM_VECTOR_LEN;
-        var ptr1 = passArray8ToWasm0(buffer_hrir, wasm.__wbindgen_malloc);
-        var len1 = WASM_VECTOR_LEN;
-        const ret = wasm.convert_data_to_audio_blob(ptr0, len0, ptr1, len1, rate);
+        const ret = wasm.convert_data_to_audio_blob(addBorrowedObject(buffer_audio), addBorrowedObject(buffer_hrir), rate);
         return takeObject(ret);
     } finally {
-        buffer_audio.set(getUint8Memory0().subarray(ptr0 / 1, ptr0 / 1 + len0));
-        wasm.__wbindgen_free(ptr0, len0 * 1);
-        buffer_hrir.set(getUint8Memory0().subarray(ptr1 / 1, ptr1 / 1 + len1));
-        wasm.__wbindgen_free(ptr1, len1 * 1);
+        heap[stack_pointer++] = undefined;
+        heap[stack_pointer++] = undefined;
     }
 }
+
+let WASM_VECTOR_LEN = 0;
 
 const cachedTextEncoder = new TextEncoder('utf-8');
 
@@ -204,6 +199,17 @@ function getImports() {
     imports.wbg.__wbg_newwithbyteoffsetandlength_88fdad741db1b182 = function(arg0, arg1, arg2) {
         const ret = new Uint8Array(getObject(arg0), arg1 >>> 0, arg2 >>> 0);
         return addHeapObject(ret);
+    };
+    imports.wbg.__wbg_new_cda198d9dbc6d7ea = function(arg0) {
+        const ret = new Uint8Array(getObject(arg0));
+        return addHeapObject(ret);
+    };
+    imports.wbg.__wbg_set_1a930cfcda1a8067 = function(arg0, arg1, arg2) {
+        getObject(arg0).set(getObject(arg1), arg2 >>> 0);
+    };
+    imports.wbg.__wbg_length_51f19f73d6d9eff3 = function(arg0) {
+        const ret = getObject(arg0).length;
+        return ret;
     };
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));

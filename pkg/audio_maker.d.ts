@@ -12,9 +12,9 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly convert_data_to_audio_blob: (a: number, b: number, c: number, d: number, e: number) => number;
-  readonly __wbindgen_malloc: (a: number) => number;
+  readonly convert_data_to_audio_blob: (a: number, b: number, c: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }
 
