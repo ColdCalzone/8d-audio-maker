@@ -45,27 +45,25 @@ function appendOption(value, index, array) {
 	select.appendChild(option);
 }
 
-async function parseAudio() {
-    let rate = parseInt(document.getElementById("rate").value);
-    let sphere = document.getElementById("hrir-file-upload").files[0];
-    let audio = document.getElementById("audio-file").files[0];
-    if(sphere == undefined) {
-        await fetch(PREFIX + select.value)
-        .then(res => res.blob())
-        .then(blob => sphere = blob);
-    }
-    if(audio == undefined) {
-        return;
-    }
-    let reader = new FileReader();
-    let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
-    let hrir_buffer = new Uint8Array(reader.readAsArrayBuffer(sphere));
-    await getBlob(audio_buffer, hrir_buffer, rate);
-}
-
-window.onload = async function() {
+window.onload = function() {
     var btn = document.getElementById("parse");
-    btn.onclick = await parseAudio;
+    btn.onclick = async () => {
+        let rate = parseInt(document.getElementById("rate").value);
+        let sphere = document.getElementById("hrir-file-upload").files[0];
+        let audio = document.getElementById("audio-file").files[0];
+        if(sphere == undefined) {
+            await fetch(PREFIX + select.value)
+            .then(res => res.blob())
+            .then(blob => sphere = blob);
+        }
+        if(audio == undefined) {
+            return;
+        }
+        let reader = new FileReader();
+        let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
+        let hrir_buffer = new Uint8Array(reader.readAsArrayBuffer(sphere));
+        await getBlob(audio_buffer, hrir_buffer, rate);
+    };
 }
 
 hrir_spheres.forEach(appendOption); 
