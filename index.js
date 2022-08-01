@@ -63,9 +63,9 @@ async function parseAudio() {
     await getBlob(audio_buffer, hrir_buffer, rate);
 }
 
-window.onload = function() {
+window.onload = async function() {
     var btn = document.getElementById("parse");
-    btn.onclick = parseAudio;
+    btn.onclick = await parseAudio;
 }
 
 hrir_spheres.forEach(appendOption); 
