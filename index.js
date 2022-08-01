@@ -57,8 +57,9 @@ async function parseAudio() {
     if(audio == undefined) {
         return;
     }
-    let audio_buffer = new Uint8Array(audio.arrayBuffer());
-    let hrir_buffer = new Uint8Array(sphere.arrayBuffer());
+    let reader = FileReader();
+    let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
+    let hrir_buffer = new Uint8Array(reader.readAsArrayBuffer(sphere));
     await getBlob(audio_buffer, hrir_buffer, rate);
 }
 
