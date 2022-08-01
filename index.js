@@ -22,7 +22,7 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
 	get_download(window.URL.createObjectURL(blob));
 };
 
-const PREFIX = "./hrir spheres/";
+const PREFIX = "./hrir/";
 let hrir_spheres = [
 	"IRC_1002_C.bin",
 	"IRC_1003_C.bin",
@@ -60,9 +60,12 @@ window.onload = function() {
             return;
         }
         let reader = new FileReader();
-        let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
         let hrir_buffer = new Uint8Array(reader.readAsArrayBuffer(sphere));
-        await getBlob(audio_buffer, hrir_buffer, rate);
+        let audio_buffer = new Uint8Array(reader.readAsArrayBuffer(audio));
+        await getBlob(
+            audio_buffer, 
+            hrir_buffer, 
+            rate);
     };
 }
 
