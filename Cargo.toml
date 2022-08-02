@@ -6,3 +6,4 @@ edition = "2021"
 
 [dependencies]
 audio_maker = {path = "./audio_maker"}
+wav = "1.0.0"

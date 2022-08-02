@@ -49,14 +49,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "eight_d_audio"
-version = "0.1.0"
-dependencies = [
- "audio_maker",
- "wav",
-]
-
-[[package]]
 name = "hrtf"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
