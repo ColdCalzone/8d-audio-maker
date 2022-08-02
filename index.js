@@ -72,11 +72,11 @@ window.onload = function() {
         reader_audio.readAsArrayBuffer(audio);
         reader_hrir.readAsArrayBuffer(sphere);
         reader_audio.onload = async () => {
-            hrir_buffer = new Uint8Array(reader_audio.result);
+            audio_buffer = new Uint8Array(reader_audio.result);
             if(reader_hrir.readyState == FileReader.DONE) await getBlob(audio_buffer, hrir_buffer, rate);
         }
         reader_hrir.onload = async () => {
-            audio_buffer = new Uint8Array(reader_hrir.result);
+            hrir_buffer = new Uint8Array(reader_hrir.result);
             if(reader_audio.readyState == FileReader.DONE) await getBlob(audio_buffer, hrir_buffer, rate);
         }
     };
