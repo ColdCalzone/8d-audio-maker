@@ -15,6 +15,10 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
 	// Instantiate our wasm module
 	const wasm = await init("./pkg/audio_maker_bg.wasm");
 
+    console.log(audio_buffer);
+    console.log(hrir_buffer);
+    console.log(rate);
+
 	// Call the Add function export from wasm, save the result
 	const audio = Blob(wasm.convert_data_to_audio_blob(audio_buffer, hrir_buffer, rate));
 
