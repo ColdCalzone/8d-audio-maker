@@ -180,15 +180,13 @@ function getArrayU8FromWasm0(ptr, len) {
     return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
 }
 /**
-* @param {any} audio_jsvalue
-* @param {any} hrir_jsvalue
-* @param {number} rate
+* @param {any} input
 * @returns {Uint8Array}
 */
-export function convert_data_to_audio_blob(audio_jsvalue, hrir_jsvalue, rate) {
+export function convert_data_to_audio_blob(input) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.convert_data_to_audio_blob(retptr, addHeapObject(audio_jsvalue), addHeapObject(hrir_jsvalue), rate);
+        wasm.convert_data_to_audio_blob(retptr, addHeapObject(input));
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var v0 = getArrayU8FromWasm0(r0, r1).slice();
