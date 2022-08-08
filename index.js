@@ -32,6 +32,10 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
     const audio = new Blob(wasm.convert_data_to_audio_blob());
 
 	get_download(window.URL.createObjectURL(audio));
+    
+    for(let node in document.getElementsByClassName("input")) {
+        node.disabled = false;
+    }
 };
 
 const PREFIX = "./hrir/";
@@ -60,6 +64,9 @@ function appendOption(value, index, array) {
 window.onload = function() {
     var btn = document.getElementById("parse");
     btn.onclick = async () => {
+        for(let node in document.getElementsByClassName("input")) {
+            node.disabled = true;
+        }
         let rate = parseInt(document.getElementById("rate").value);
         let sphere = document.getElementById("hrir-file-upload").files[0];
         let audio = document.getElementById("audio-file").files[0];

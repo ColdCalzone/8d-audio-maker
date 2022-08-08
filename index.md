@@ -47,24 +47,24 @@ All pre-selected HRIR spheres are from [here](https://github.com/mrDIMAS/hrir_sp
   <div class="small" id="left">
     <div class="small-vertical">
       Upload Audio
-      <input type="file" id="audio-file">
+      <input type="file" id="audio-file" class="input">
     </div>
     <div class="small-vertical">
       Rotation rate
-      <input type="number" id="rate" min="1" value="10">
+      <input type="number" id="rate" min="1" value="10" class="input">
     </div>
   </div>
   <div class="small">
     Select Sphere
-    <input type="file" id="hrir-file-upload">
+    <input type="file" id="hrir-file-upload" class="input">
     <hr>
     <label for="hrir-select">Choose a pre-selected HRIR sphere</label>
-    <select name="hrir-select" id="hrir-select" value="IRC_1002_C.bin"></select>
+    <select name="hrir-select" id="hrir-select" value="IRC_1002_C.bin" class="input"></select>
   </div>
 </div>
 <div class="center big" id="button-container-container">
   <div class="center" id="button-container">
-    <button id="parse">8D-ify</button>
+    <button id="parse" class="input">8D-ify</button>
   </div>
 </div>
 
