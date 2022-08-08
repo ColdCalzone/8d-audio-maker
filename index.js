@@ -18,8 +18,16 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
     console.log(audio_buffer);
     console.log(hrir_buffer);
     console.log(rate);
-    
-    const audio = Blob(wasm.convert_data_to_audio_blob(audio_buffer, hrir_buffer, rate));
+
+    for(let i = 0; i < audio_buffer.length; i++) {
+        wasm.write_to_audio(audio_buffer[i]);
+    }
+
+    for(let i = 0; i < hrir_buffer.length; i++) {
+        wasm.write_to_hrir(hrir_buffer[i]);
+    }
+
+    const audio = Blob(wasm.convert_data_to_audio_blob(rate));
 
 	get_download(window.URL.createObjectURL(audio));
 };

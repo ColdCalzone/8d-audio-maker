@@ -37,14 +37,18 @@ function getUint8Memory0() {
 function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
+/**
+* @param {number} x
+*/
+export function write_to_audio(x) {
+    wasm.write_to_audio(x);
+}
 
-let WASM_VECTOR_LEN = 0;
-
-function passArray8ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 1);
-    getUint8Memory0().set(arg, ptr / 1);
-    WASM_VECTOR_LEN = arg.length;
-    return ptr;
+/**
+* @param {number} x
+*/
+export function write_to_hrir(x) {
+    wasm.write_to_hrir(x);
 }
 
 let cachedInt32Memory0 = new Int32Array();
@@ -60,30 +64,20 @@ function getArrayU8FromWasm0(ptr, len) {
     return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
 }
 /**
-* @param {Uint8Array} input_audio
-* @param {Uint8Array} input_hrir
 * @param {number} rate
 * @returns {Uint8Array}
 */
-export function convert_data_to_audio_blob(input_audio, input_hrir, rate) {
+export function convert_data_to_audio_blob(rate) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        var ptr0 = passArray8ToWasm0(input_audio, wasm.__wbindgen_malloc);
-        var len0 = WASM_VECTOR_LEN;
-        var ptr1 = passArray8ToWasm0(input_hrir, wasm.__wbindgen_malloc);
-        var len1 = WASM_VECTOR_LEN;
-        wasm.convert_data_to_audio_blob(retptr, ptr0, len0, ptr1, len1, rate);
+        wasm.convert_data_to_audio_blob(retptr, rate);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
-        var v2 = getArrayU8FromWasm0(r0, r1).slice();
+        var v0 = getArrayU8FromWasm0(r0, r1).slice();
         wasm.__wbindgen_free(r0, r1 * 1);
-        return v2;
+        return v0;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
-        input_audio.set(getUint8Memory0().subarray(ptr0 / 1, ptr0 / 1 + len0));
-        wasm.__wbindgen_free(ptr0, len0 * 1);
-        input_hrir.set(getUint8Memory0().subarray(ptr1 / 1, ptr1 / 1 + len1));
-        wasm.__wbindgen_free(ptr1, len1 * 1);
     }
 }
 
@@ -95,6 +89,8 @@ function addHeapObject(obj) {
     heap[idx] = obj;
     return idx;
 }
+
+let WASM_VECTOR_LEN = 0;
 
 const cachedTextEncoder = new TextEncoder('utf-8');
 

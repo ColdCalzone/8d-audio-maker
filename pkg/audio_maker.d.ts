@@ -1,21 +1,29 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {Uint8Array} input_audio
-* @param {Uint8Array} input_hrir
+* @param {number} x
+*/
+export function write_to_audio(x: number): void;
+/**
+* @param {number} x
+*/
+export function write_to_hrir(x: number): void;
+/**
 * @param {number} rate
 * @returns {Uint8Array}
 */
-export function convert_data_to_audio_blob(input_audio: Uint8Array, input_hrir: Uint8Array, rate: number): Uint8Array;
+export function convert_data_to_audio_blob(rate: number): Uint8Array;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly convert_data_to_audio_blob: (a: number, b: number, c: number, d: number, e: number, f: number) => void;
+  readonly write_to_audio: (a: number) => void;
+  readonly write_to_hrir: (a: number) => void;
+  readonly convert_data_to_audio_blob: (a: number, b: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
-  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }
 
