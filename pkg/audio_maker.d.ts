@@ -2,9 +2,10 @@
 /* eslint-disable */
 /**
 * @param {any} input
+* @param {number} rate
 * @returns {Uint8Array}
 */
-export function convert_data_to_audio_blob(input: any): Uint8Array;
+export function convert_data_to_audio_blob(input: any, rate: number): Uint8Array;
 /**
 * @param {number} input
 * @returns {number}
@@ -15,7 +16,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly convert_data_to_audio_blob: (a: number, b: number) => void;
+  readonly convert_data_to_audio_blob: (a: number, b: number, c: number) => void;
   readonly print_value: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
