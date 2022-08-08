@@ -1,5 +1,4 @@
 import init from "./pkg/audio_maker.js";
-import { print_value } from "./pkg/audio_maker.js";
 
 function get_download(url) {
     let link = document.createElement('a');
@@ -20,12 +19,8 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
     console.log(hrir_buffer);
     console.log(rate);
     
-    
-    const r = wasm.print_value(rate);
-    console.log(r);
-    
     const args = {audio : audio_buffer, hrir: hrir_buffer};
-    
+
     const audio = Blob(wasm.convert_data_to_audio_blob(args, rate));
 
 	//https://stackoverflow.com/questions/33247716/javascript-file-download-with-blob

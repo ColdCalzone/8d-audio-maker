@@ -198,15 +198,6 @@ export function convert_data_to_audio_blob(input, rate) {
     }
 }
 
-/**
-* @param {number} input
-* @returns {number}
-*/
-export function print_value(input) {
-    const ret = wasm.print_value(input);
-    return ret;
-}
-
 async function load(module, imports) {
     if (typeof Response === 'function' && module instanceof Response) {
         if (typeof WebAssembly.instantiateStreaming === 'function') {
