@@ -54,8 +54,8 @@ export function write_to_hrir(x) {
 /**
 * @param {number} x
 */
-export function write_rte(x) {
-    wasm.write_rte(x);
+export function write_rate(x) {
+    wasm.write_rate(x);
 }
 
 let cachedInt32Memory0 = new Int32Array();

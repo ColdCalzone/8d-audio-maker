@@ -27,7 +27,7 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
         wasm.write_to_hrir(hrir_buffer[i]);
     }
 
-    wasm.write_rte(rate);
+    wasm.write_rate(rate);
 
     const audio = Blob(wasm.convert_data_to_audio_blob());
 
