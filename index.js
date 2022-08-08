@@ -33,8 +33,9 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
 
 	get_download(window.URL.createObjectURL(audio));
     
-    for(let node in document.getElementsByClassName("input")) {
-        node.disabled = false;
+    let elements = document.getElementsByClassName("input");
+    for(let i = 0; i < elements.length; i++) {
+        elements[i].disabled = false;
     }
 };
 
@@ -64,9 +65,11 @@ function appendOption(value, index, array) {
 window.onload = function() {
     var btn = document.getElementById("parse");
     btn.onclick = async () => {
-        for(let node in document.getElementsByClassName("input")) {
-            node.disabled = true;
+        let elements = document.getElementsByClassName("input");
+        for(let i = 0; i < elements.length; i++) {
+            elements[i].disabled = false;
         }
+        
         let rate = parseInt(document.getElementById("rate").value);
         let sphere = document.getElementById("hrir-file-upload").files[0];
         let audio = document.getElementById("audio-file").files[0];
