@@ -45,6 +45,22 @@ export function write_to_audio(x) {
 }
 
 /**
+* @returns {number}
+*/
+export function get_audio_pointer() {
+    const ret = wasm.get_audio_pointer();
+    return ret;
+}
+
+/**
+* @returns {number}
+*/
+export function get_audio_length() {
+    const ret = wasm.get_audio_length();
+    return ret >>> 0;
+}
+
+/**
 * @param {number} x
 */
 export function write_to_hrir(x) {
@@ -58,33 +74,10 @@ export function write_rate(x) {
     wasm.write_rate(x);
 }
 
-let cachedInt32Memory0 = new Int32Array();
-
-function getInt32Memory0() {
-    if (cachedInt32Memory0.byteLength === 0) {
-        cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
-    }
-    return cachedInt32Memory0;
-}
-
-function getArrayU8FromWasm0(ptr, len) {
-    return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
-}
 /**
-* @returns {Uint8Array}
 */
 export function convert_data_to_audio_blob() {
-    try {
-        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.convert_data_to_audio_blob(retptr);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
-        var v0 = getArrayU8FromWasm0(r0, r1).slice();
-        wasm.__wbindgen_free(r0, r1 * 1);
-        return v0;
-    } finally {
-        wasm.__wbindgen_add_to_stack_pointer(16);
-    }
+    wasm.convert_data_to_audio_blob();
 }
 
 function addHeapObject(obj) {
@@ -149,6 +142,15 @@ function passStringToWasm0(arg, malloc, realloc) {
 
     WASM_VECTOR_LEN = offset;
     return ptr;
+}
+
+let cachedInt32Memory0 = new Int32Array();
+
+function getInt32Memory0() {
+    if (cachedInt32Memory0.byteLength === 0) {
+        cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
+    }
+    return cachedInt32Memory0;
 }
 
 async function load(module, imports) {
