@@ -13,17 +13,17 @@ function get_download(url) {
 
 const getBlob = async (audio_buffer, hrir_buffer, rate) => {
 	// Instantiate our wasm module
-	const wasm = await init("./pkg/audio_maker_bg.wasm");
+    const wasm = await init("./pkg/audio_maker_bg.wasm");
 
     console.log(audio_buffer);
     console.log(hrir_buffer);
     console.log(rate);
-
-	// Call the Add function export from wasm, save the result
-	const audio = Blob(wasm.convert_data_to_audio_blob({audio : audio_buffer, hrir: hrir_buffer, rate: rate}));
+    
+    const args = {audio : audio_buffer, hrir: hrir_buffer, rate: rate};
+    const audio = Blob(wasm.convert_data_to_audio_blob(args));
 
 	//https://stackoverflow.com/questions/33247716/javascript-file-download-with-blob
-	get_download(window.URL.createObjectURL(blob));
+	get_download(window.URL.createObjectURL(audio));
 };
 
 const PREFIX = "./hrir/";
