@@ -5,12 +5,18 @@
 * @returns {Uint8Array}
 */
 export function convert_data_to_audio_blob(input: any): Uint8Array;
+/**
+* @param {any} input
+* @returns {any}
+*/
+export function print_value(input: any): any;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly convert_data_to_audio_blob: (a: number, b: number) => void;
+  readonly print_value: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;

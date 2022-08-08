@@ -20,6 +20,10 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
     console.log(rate);
     
     const args = {audio : audio_buffer, hrir: hrir_buffer, rate: rate};
+    
+    const r = wasm.print_value(rate);
+    console.log(r);
+    
     const audio = Blob(wasm.convert_data_to_audio_blob(args));
 
 	//https://stackoverflow.com/questions/33247716/javascript-file-download-with-blob

@@ -197,6 +197,15 @@ export function convert_data_to_audio_blob(input) {
     }
 }
 
+/**
+* @param {any} input
+* @returns {any}
+*/
+export function print_value(input) {
+    const ret = wasm.print_value(addHeapObject(input));
+    return takeObject(ret);
+}
+
 async function load(module, imports) {
     if (typeof Response === 'function' && module instanceof Response) {
         if (typeof WebAssembly.instantiateStreaming === 'function') {
