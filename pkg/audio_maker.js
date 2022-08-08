@@ -198,12 +198,12 @@ export function convert_data_to_audio_blob(input) {
 }
 
 /**
-* @param {any} input
-* @returns {any}
+* @param {number} input
+* @returns {number}
 */
 export function print_value(input) {
-    const ret = wasm.print_value(addHeapObject(input));
-    return takeObject(ret);
+    const ret = wasm.print_value(input);
+    return ret;
 }
 
 async function load(module, imports) {

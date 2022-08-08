@@ -6,10 +6,10 @@
 */
 export function convert_data_to_audio_blob(input: any): Uint8Array;
 /**
-* @param {any} input
-* @returns {any}
+* @param {number} input
+* @returns {number}
 */
-export function print_value(input: any): any;
+export function print_value(input: number): number;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
