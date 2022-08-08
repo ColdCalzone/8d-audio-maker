@@ -9,10 +9,13 @@ export function write_to_audio(x: number): void;
 */
 export function write_to_hrir(x: number): void;
 /**
-* @param {number} rate
+* @param {number} x
+*/
+export function write_rte(x: number): void;
+/**
 * @returns {Uint8Array}
 */
-export function convert_data_to_audio_blob(rate: number): Uint8Array;
+export function convert_data_to_audio_blob(): Uint8Array;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
@@ -20,7 +23,8 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly write_to_audio: (a: number) => void;
   readonly write_to_hrir: (a: number) => void;
-  readonly convert_data_to_audio_blob: (a: number, b: number) => void;
+  readonly convert_data_to_audio_blob: (a: number) => void;
+  readonly write_rte: (a: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;

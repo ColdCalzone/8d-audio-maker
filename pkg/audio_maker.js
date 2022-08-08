@@ -51,6 +51,13 @@ export function write_to_hrir(x) {
     wasm.write_to_hrir(x);
 }
 
+/**
+* @param {number} x
+*/
+export function write_rte(x) {
+    wasm.write_rte(x);
+}
+
 let cachedInt32Memory0 = new Int32Array();
 
 function getInt32Memory0() {
@@ -64,13 +71,12 @@ function getArrayU8FromWasm0(ptr, len) {
     return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
 }
 /**
-* @param {number} rate
 * @returns {Uint8Array}
 */
-export function convert_data_to_audio_blob(rate) {
+export function convert_data_to_audio_blob() {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.convert_data_to_audio_blob(retptr, rate);
+        wasm.convert_data_to_audio_blob(retptr);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var v0 = getArrayU8FromWasm0(r0, r1).slice();
