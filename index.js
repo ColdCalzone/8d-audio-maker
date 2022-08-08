@@ -31,10 +31,10 @@ const getBlob = async (audio_buffer, hrir_buffer, rate) => {
     
     wasm.convert_data_to_audio_blob();
     
-    const wasmMemory = new Uint8Array(rustWasm.memory.buffer);
+    const wasmMemory = new Uint8Array(wasm.memory.buffer);
     
-    const wasmPointer = rustWasm.get_audio_pointer();
-    const wasmLength = rustWasm.get_audio_length();
+    const wasmPointer = wasm.get_audio_pointer();
+    const wasmLength = wasm.get_audio_length();
     
     const audio = new Blob(wasmMemory.slice(wasmPointer, wasmPointer + wasmLength));
 	get_download(window.URL.createObjectURL(audio));
