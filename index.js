@@ -1,4 +1,4 @@
-const wasm = import("./pkg/audio_maker_bg.wasm");
+import init from "./pkg/audio_maker.js";
 
 function get_download(url) {
     let link = document.createElement('a');
@@ -12,6 +12,8 @@ function get_download(url) {
 }
 
 const getBlob = async (audio_buffer, hrir_buffer, rate) => {
+	// Instantiate our wasm module
+    const wasm = await init("./pkg/audio_maker_bg.wasm");
 
     console.log(audio_buffer);
     console.log(hrir_buffer);
